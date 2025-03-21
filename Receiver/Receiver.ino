@@ -75,6 +75,7 @@ unsigned long startTime;    // Timer for checking start/end signals
 
 void setup() {
     Serial.begin(9600);
+    Serial.println("Rx");
 }
 
 void loop() {
@@ -114,13 +115,15 @@ void loop() {
                 binaryData = binaryData.substring(8);  // Remove processed bits
                 
                 // Check for end of communication ('#' character)
-                if (receivedChar == '#') {
-                    Serial.println("\nEnd Signal Detected!");
-                    receiving = false;
-                    Serial.println("Transmission Complete");
-                    binaryData = "";  // Clear data buffer
-                    break;
+                if (receivedChar == '#' || receivedChar == '\0') {
+                      if (receivedChar == '#') Serial.println("\nEnd Signal Detected!");
+                      if (receivedChar == '\0') Serial.println("\nSome error occurred during transmission (NUL received).");
+                      receiving = false;
+                      Serial.println("Transmission Complete");
+                      binaryData = "";  
+                      break;
                 }
+
             }
         }
     }
