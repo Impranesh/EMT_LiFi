@@ -147,7 +147,6 @@
 #define FIRST_SAMPLE_DELAY 60 // Delay before first sample (in ms)
 #define START_TIME 150      // TIME FOR DETECTING START OF TRANSMISSION
 #define SAMPLE_DELAY 90    // Delay between consecutive samples (in ms)
-#define END_PATTERN "011011"  // '#' in binary (End Signal)
 
 String binaryData = "";     // Store received binary string
 bool receiving = false;     // Flag to check if receiving data
@@ -183,7 +182,7 @@ void loop() {
                     Serial.println("Transmission Start Detected");
                     receiving = true;
                     binaryData = "";  
-                    Serial.println("Waiting for first bit...");
+                    // Serial.println("Waiting for first bit...");
                     delay(FIRST_SAMPLE_DELAY);  
                     break;
                 }
